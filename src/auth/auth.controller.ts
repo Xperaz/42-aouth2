@@ -1,7 +1,8 @@
-import { Controller, Get, Res, UseGuards } from '@nestjs/common';
-import { Response } from 'express';
+import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
+import { Request, Response } from 'express';
 import { ApiTags } from '@nestjs/swagger';
-import { IntraAuthGuard } from 'src/auth/guards';
+import { AuthenticatedGuard, IntraAuthGuard } from 'src/auth/guards';
+import { User } from '@prisma/client';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -13,16 +14,23 @@ export class AuthController {
         return 'Ok';
     }
 
-    //api/auth/redirect
     @Get('redirect')
     @UseGuards(IntraAuthGuard)
     redirect(@Res() res: Response){
-        res.send(200);
+        res.redirect('http://localhost:3000/profile');
     }
 
     @Get('status')
-    status() {}
-
+    @UseGuards(AuthenticatedGuard)
+    status(@Req() req: Request & { user: User }) {
+        return req.user;
+    }
+    
     @Get('logout')
-    logout() {}
+    @UseGuards(AuthenticatedGuard)
+    logout(@Req() req, @Res() res: Response) {
+        req.logout(() => {
+            res.redirect('/');
+        });
+    }
 }

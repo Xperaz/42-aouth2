@@ -7,7 +7,7 @@ import { AuthenticationProvider } from '../auth';
 
 
 @Injectable()
-export class IntraStrategy extends PassportStrategy(Strategy) {
+export class IntraStrategy extends PassportStrategy(Strategy, '42') {
     constructor( @Inject('AUTH_SERVICE') 
                 private readonly authService: AuthService,
         ) {
@@ -20,8 +20,10 @@ export class IntraStrategy extends PassportStrategy(Strategy) {
     }
 
     async validate(accessToken: string, refreshToken: string, profile: any){
-        const details : User= {login: profile._json.login, email: profile._json.email, avatar: profile._json.image.link, name: profile._json.usual_full_name, banner: ''};
-       console.log(details);
+        const details : User= {
+            login: profile._json.login, email: profile._json.email, avatar: profile._json.image.link, name: profile._json.usual_full_name, banner: '',
+            id: 0
+        };
        return await this.authService.validateUser(details);
     }
 }

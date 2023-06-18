@@ -5,5 +5,5 @@ import { User } from "@prisma/client";
 export interface AuthenticationProvider {
     validateUservalidateUser(details: Prisma.UserCreateInput) :  Promise<User>;
     createUser(details: Prisma.UserCreateInput) :  Promise<User>;
-    findUser();
+    findUser(login: string) : Promise<User | undefined>;
 }

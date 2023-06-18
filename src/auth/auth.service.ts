@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { AuthenticationProvider } from "./auth";
 import { PrismaService } from "src/prisma/prisma.service";
 import { UserDetails } from "src/utils/types";
@@ -32,7 +32,14 @@ export class AuthService {
         }
       }
 
-    findUser() {
-        throw new Error("Method not implemented.");
+    async findUser(login: string) : Promise<User | undefined>  {
+      try {
+        const user = await this.prisma.user.findUnique({
+          where: { login: login}
+        });
+        return user;
+      } catch (error) {
+        throw new NotFoundException(`User with ${login} does not exist.`);
+      }
     }
 }

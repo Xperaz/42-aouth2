@@ -4,15 +4,22 @@
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 generator client {
   provider = "prisma-client-js"
 }
 
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt   DateTime
+}
+
 model User {
   id    Int     @default(autoincrement()) @id
- createdAt    DateTime @default(now())
  login        String  @unique
  email        String?   @unique
  name         String?

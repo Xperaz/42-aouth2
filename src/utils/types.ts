@@ -1,3 +1,4 @@
+import { User } from "@prisma/client";
 
 export type UserDetails = {
     login?: string;
@@ -7,3 +8,5 @@ export type UserDetails = {
     email?: string;
     intraId: string;
 }
+
+export type Done = (err: Error, user: User) => void;
