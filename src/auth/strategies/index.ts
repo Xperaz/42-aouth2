@@ -3,7 +3,6 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Inject, Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { AuthService } from '../auth.service';
-import { AuthenticationProvider } from '../auth';
 
 
 @Injectable()
@@ -22,7 +21,7 @@ export class IntraStrategy extends PassportStrategy(Strategy, '42') {
     async validate(accessToken: string, refreshToken: string, profile: any){
         const details : User= {
             login: profile._json.login, email: profile._json.email, avatar: profile._json.image.link, name: profile._json.usual_full_name, banner: '',
-            id: 0
+            id: 0, intraId: profile._json.id
         };
        return await this.authService.validateUser(details);
     }

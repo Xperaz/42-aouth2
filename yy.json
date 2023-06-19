@@ -1,0 +1,19 @@
+{
+    "cookie": {
+        "originalMaxAge": 604800000,
+        "expires": "2023-06-25T15:41:00.142Z",
+        "httpOnly": true,
+        "path": "/"
+    },
+    "passport": {
+        "user": {
+            "id": 91238,
+            "login": "aouhadou",
+            "email": "aouhadou@student.1337.ma",
+            "name": "Azedine Ouhadou",
+            "avatar": "https://cdn.intra.42.fr/users/9f70a3652c2bc7d286d9f652f1e667b4/aouhadou.jpg",
+            "intraId": 91238,
+            "banner": ""
+        }
+    }
+}

@@ -28,8 +28,9 @@ export class AuthController {
     
     @Get('logout')
     @UseGuards(AuthenticatedGuard)
-    logout(@Req() req, @Res() res: Response) {
-        req.logout(() => {
+    async logout(@Req() req, @Res() res: Response) {
+        res.clearCookie('connect.sid');
+        await req.logout(() => {
             res.redirect('/');
         });
     }

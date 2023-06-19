@@ -17,7 +17,7 @@ app.enableCors()
         .build();
         
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('/api', app, document);
   
   
   app.enableCors({
@@ -30,7 +30,7 @@ app.enableCors()
       cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
       },
-      secret: 'a santa at nasa',
+      secret: 'jjkshdfjkhafsjk##4888*7hjkhfkjajkhsdjkfhjk12dsh78',
       resave: true,
       saveUninitialized: true,
       store: new PrismaSessionStore(

@@ -6,7 +6,7 @@ export type UserDetails = {
     id?: string;
     avatar?: string;
     email?: string;
-    intraId: string;
+    intraId: number;
 }
 
 export type Done = (err: Error, user: User) => void;

@@ -24,7 +24,7 @@ model User {
  email        String?   @unique
  name         String?
  avatar       String?
-//  intraId      String
+ intraId      Int @unique
  banner       String?
 
 }
